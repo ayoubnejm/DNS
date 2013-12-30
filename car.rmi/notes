@@ -1,0 +1,19 @@
+/*Run with security manager:
+
+_ A policy file need to be defined during the launch of the program that use RMI Binding and the Tomcat server:
+	- add "-Djava.security.policy=absolute_path_to_policy_file" to "vm argument" in launch configuration.
+	- the policy file's content can be: grant all permission. See "wideopen.policy" for more information.
+	- In car RMI project: this line can be used: "-Djava.security.policy=${workspace_loc:car.rmi}/src/wideopen.policy"
+	
+No need
+*/
+	
+_ In Rmi_Servlet:
+	- Add the "SiteManagerImpl_Stub.class" to "server" package (in build folder):
+		Right mouse on the "build" folder
+		"Import"
+		"File System"
+		select the "SiteManagerImpl_Stub.class" file
+		In "Into folder": "Browser": "build" -> "classes" -> "server"
+		"Finish"
+	- Add "SiteManagerItf.java" to "sharing" package
