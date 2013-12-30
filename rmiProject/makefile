@@ -1,0 +1,24 @@
+all:	compil run
+
+compil:
+	@-mkdir classes
+	javac -Xlint:unchecked -sourcepath src -d classes  src/*/*.java       
+	cd classes/ ; \
+	rmic server.SiteImpl  
+ 	
+	 
+
+run:
+	@-killall rmiregistry java
+	cd classes/server;\
+	ls
+	rmiregistry & 
+	java -classpath classes -Djava.rmi.server.codebase=file:classes/ server.Server 
+ 	
+ 
+
+
+
+clean:
+	rm -rf classes
+	find . -name '*~' -print -exec rm '{}' ';'
